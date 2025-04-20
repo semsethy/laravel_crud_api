@@ -12,17 +12,11 @@ use App\Http\Controllers\SettingController;
 Route::post("register", [AuthController::class, "register"]);
 Route::post("login", [AuthController::class, "login"]);
 
-// Route::apiResource("categories", CategoryController::class);
-Route::apiResource("products", ProductController::class);
-// Route::apiResource("slideshows", SlideshowController::class);
-// Route::apiResource("settings", SettingController::class);
-
-Route::group(["middleware" => ["auth:sanctum"]], function () {
+Route::middleware('jwt.auth')->group(function () {
     Route::apiResource("categories", CategoryController::class);
-    // Route::apiResource("products", ProductController::class);
+    Route::apiResource("products", ProductController::class);
     Route::apiResource("slideshows", SlideshowController::class);
     Route::apiResource("settings", SettingController::class);
     Route::post("logout", [AuthController::class, "logout"]);
 });
-
 

@@ -21,6 +21,7 @@ class CategoryController extends Controller
             "status" => true,
             "categories" => $categories
         ]);
+        // return response()->json($categories);
     }
 
     /**
@@ -96,3 +97,4 @@ class CategoryController extends Controller
     }
 
 }
+

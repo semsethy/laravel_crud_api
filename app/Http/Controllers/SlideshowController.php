@@ -141,6 +141,16 @@ class SlideshowController extends Controller
             "message" => "slideshow deleted successfully"
         ]);
     }
+
+    public function getActiveSlideshows()
+    {
+        $slideshows = Slideshow::with('category')
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($slideshows);
+    }
     
 }
 
